@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span>Measure Points</span>
+        <button class="btn btn-primary float-right jh-create-entity create-measure-point-wl" [routerLink]="['/', { outlets: { popup: ['measure-point-wl-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Measure Point
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="measurePoints">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="startTm"><span>Start Tm</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="endTm"><span>End Tm</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ipAddress"><span>Ip Address</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="value"><span>Value</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="houseHoldId"><span>House Hold</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let measurePoint of measurePoints ;trackBy: trackId">
+                <td><a [routerLink]="['../measure-point-wl', measurePoint.id ]">{{measurePoint.id}}</a></td>
+                <td>{{measurePoint.startTm | date:'mediumDate'}}</td>
+                <td>{{measurePoint.endTm | date:'mediumDate'}}</td>
+                <td>{{measurePoint.ipAddress}}</td>
+                <td>{{measurePoint.value}}</td>
+                <td>
+                    <div *ngIf="measurePoint.houseHoldId">
+                        <a [routerLink]="['../house-hold-wl', measurePoint.houseHoldId  ]" >{{measurePoint.houseHoldId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../measure-point-wl', measurePoint.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'measure-point-wl/'+ measurePoint.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'measure-point-wl/'+ measurePoint.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

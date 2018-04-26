@@ -1,0 +1,43 @@
+
+<div *ngIf="measurePoint">
+    <h2><span>Measure Point</span> {{measurePoint.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Start Tm</span></dt>
+        <dd>
+            <span>{{measurePoint.startTm | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>End Tm</span></dt>
+        <dd>
+            <span>{{measurePoint.endTm | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Ip Address</span></dt>
+        <dd>
+            <span>{{measurePoint.ipAddress}}</span>
+        </dd>
+        <dt><span>Value</span></dt>
+        <dd>
+            <span>{{measurePoint.value}}</span>
+        </dd>
+        <dt><span>House Hold</span></dt>
+        <dd>
+            <div *ngIf="measurePoint.houseHoldId">
+                <a [routerLink]="['/house-hold-wl', measurePoint.houseHoldId]">{{measurePoint.houseHoldId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'measure-point-wl/'+ measurePoint.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

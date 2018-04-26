@@ -1,9 +1,13 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { WaterlessMeasurePointWlModule } from './measure-point/measure-point-wl.module';
+import { WaterlessHouseHoldWlModule } from './house-hold/house-hold-wl.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
     imports: [
+        WaterlessMeasurePointWlModule,
+        WaterlessHouseHoldWlModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

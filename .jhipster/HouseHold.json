@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "houseHold",
+            "otherEntityName": "measurePoint",
+            "otherEntityRelationshipName": "houseHold"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "streetAddress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "houseNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "postalCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "city",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "flatNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "numberOfPeople",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20180426212411",
+    "javadoc": "not an ignored comment",
+    "entityTableName": "house_hold",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "wl"
+}

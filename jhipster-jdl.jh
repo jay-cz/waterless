@@ -1,6 +1,7 @@
 entity MeasurePoint {
-	startTm Date,
-    endTm Date,
+	startTm LocalDate,
+    endTm LocalDate,
+    ipAddress String,
     value String,
 }
 
@@ -11,9 +12,10 @@ entity HouseHold {
 	houseNumber String,
     postalCode String,
 	city String,
+    flatNumber Integer,
 	numberOfPeople Integer,
-    lat Double,
-    long Double
+    latitude Double,
+    longitude Double
 }
 
 relationship OneToMany {
@@ -30,4 +32,4 @@ dto * with mapstruct
 service all with serviceImpl
 
 // Set an angular suffix
-angularSuffix * with chyne
+angularSuffix * with wl

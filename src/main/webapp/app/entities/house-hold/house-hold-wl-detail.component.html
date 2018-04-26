@@ -1,0 +1,53 @@
+
+<div *ngIf="houseHold">
+    <h2><span>House Hold</span> {{houseHold.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Street Address</span></dt>
+        <dd>
+            <span>{{houseHold.streetAddress}}</span>
+        </dd>
+        <dt><span>House Number</span></dt>
+        <dd>
+            <span>{{houseHold.houseNumber}}</span>
+        </dd>
+        <dt><span>Postal Code</span></dt>
+        <dd>
+            <span>{{houseHold.postalCode}}</span>
+        </dd>
+        <dt><span>City</span></dt>
+        <dd>
+            <span>{{houseHold.city}}</span>
+        </dd>
+        <dt><span>Flat Number</span></dt>
+        <dd>
+            <span>{{houseHold.flatNumber}}</span>
+        </dd>
+        <dt><span>Number Of People</span></dt>
+        <dd>
+            <span>{{houseHold.numberOfPeople}}</span>
+        </dd>
+        <dt><span>Latitude</span></dt>
+        <dd>
+            <span>{{houseHold.latitude}}</span>
+        </dd>
+        <dt><span>Longitude</span></dt>
+        <dd>
+            <span>{{houseHold.longitude}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'house-hold-wl/'+ houseHold.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
