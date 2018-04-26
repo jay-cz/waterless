@@ -1,0 +1,33 @@
+entity MeasurePoint {
+	startTm Date,
+    endTm Date,
+    value String,
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity HouseHold {
+	streetAddress String,
+	houseNumber String,
+    postalCode String,
+	city String,
+	numberOfPeople Integer,
+    lat Double,
+    long Double
+}
+
+relationship OneToMany {
+	HouseHold{houseHold} to MeasurePoint
+}
+
+// Set pagination options
+paginate MeasurePoint with infinite-scroll
+paginate HouseHold with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+angularSuffix * with chyne
