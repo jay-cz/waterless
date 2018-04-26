@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
+import { ViewChild } from '@angular/core';
+import { } from '@types/googlemaps';
 
 import { Account, LoginModalService, Principal } from '../shared';
 
@@ -15,6 +17,8 @@ import { Account, LoginModalService, Principal } from '../shared';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
+    @ViewChild('gmap') gmapElement: any;
+    map: google.maps.Map;
 
     constructor(
         private principal: Principal,
