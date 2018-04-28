@@ -17,11 +17,15 @@ import {
     SocialService,
     JhiLoginModalComponent
 } from './';
+import {AccordionModule} from "primeng/primeng";
+import {CalendarModule} from "primeng/calendar";
 
 @NgModule({
     imports: [
         WaterlessSharedLibsModule,
-        WaterlessSharedCommonModule
+        WaterlessSharedCommonModule,
+        CalendarModule,
+        AccordionModule
     ],
     declarations: [
         JhiSocialComponent,
@@ -46,7 +50,9 @@ import {
         JhiSocialComponent,
         JhiLoginModalComponent,
         HasAnyAuthorityDirective,
-        DatePipe
+        DatePipe,
+        CalendarModule,
+        AccordionModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
