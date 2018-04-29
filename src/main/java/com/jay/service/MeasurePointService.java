@@ -1,6 +1,9 @@
 package com.jay.service;
 
+import com.jay.service.dto.MeasureDataDTO;
 import com.jay.service.dto.MeasurePointDTO;
+import java.time.LocalDate;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -39,4 +42,16 @@ public interface MeasurePointService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    /**
+     * Simply get all measuredata
+     * @return
+     */
+    List<MeasureDataDTO> findAllMeasureData();
+
+    /**
+     * Finds all measure data within selected timerange
+     * @return
+     */
+    List<MeasureDataDTO> findAllMeasureData(LocalDate start, LocalDate end);
 }

@@ -24,3 +24,8 @@ only screen and (                min-resolution: 2dppx) {
     }
 }
 
+.counter{
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+}

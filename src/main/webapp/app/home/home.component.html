@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
         <div #gmap style="width:100%; height: 80vh"></div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
 
         <h2 sty le="margin-bottom: 30px;">Vyberte časové období</h2>
 
-        <p>Na mapě se zobrazí data z měření, která byla pro vybrané časové období zadána.</p>
+        <p>Na mapě se zobrazí data pro vybrané časové období.</p>
 
         <table>
             <tr>
@@ -36,7 +36,7 @@
         <h2 style="margin-top: 30px;">Statistiky</h2>
         <!--<p-calendar [(ngModel)]="timeStart" dateFormat="dd.mm.yy"></p-calendar>-->
 
-        <p class="well">Za vámi vybrané období bylo:</p>
+        <p class="well">Za vámi vybrané období</p>
 
         <table>
             <tr>
@@ -44,7 +44,10 @@
                     <i class="la la-home la-2x"></i>
                 </td>
                 <td>
-                    239 <small>Domácností bez vody</small>
+                    <span class="counter">
+                    {{waterLessHouseholds}}
+                    </span>
+                     <small>Domácností bez vody</small>
                 </td>
             </tr>
             <tr>
@@ -52,15 +55,29 @@
                     <i class="la la-user la-2x"></i>
                 </td>
                 <td>
-                    533 <small>Lidí bez vody</small>
+                    <span class="counter">
+                        {{waterLessPeople}}
+                    </span>
+                    <small>Lidí bez vody</small>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <i class="la la-map-pin la-2x"></i>
+                </td>
+                <td>
+                    <span class="counter">
+                        {{measurePoints}}
+                    </span>
+                    <small> Zaznamenaných výpadků</small>
                 </td>
             </tr>
         </table>
 
         <hr />
 
-        <h2 style="margin-top: 45px;">Přidat vlastní měření</h2>
-        <p>Přidejte údaje o své domácnosti.</p>
-        <button class="btn btn-primary"><i class="la la-plus"></i> Přidat měření</button>
+        <h2 style="margin-top: 45px;">Přidat záznam</h2>
+        <p>Přidejte údaje o nedostatku vody ve své domácnosti.</p>
+        <button class="btn btn-primary"><i class="la la-plus"></i> Přidat záznam</button>
     </div>
 </div>

@@ -27,25 +27,33 @@ export class HomeComponent implements OnInit {
     csLocale : any;
 
     //Selected timerange
-    timeStart : Date;
     timeEnd : Date = new Date();
+    timeStart : Date = new Date();
+
+    //Stats
+    waterLessPeople : number = 0;
+    waterLessHouseholds : number = 0;
+    measurePoints: number = 0;
 
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
         private eventManager: JhiEventManager
     ) {
+
     }
 
     ngOnInit() {
         this.defineHeatMap();
         this.defineCalendarLocale();
+        //Set time start 24 hours before now
+        this.timeStart.setMinutes(this.timeEnd.getMinutes() - 1440); //Last 24 hours
     }
 
     defineHeatMap(){
         let mapProp = {
-            center: new google.maps.LatLng(50.0566567,14.216043899999931),
-            zoom: 17,
+            center: new google.maps.LatLng(50.06081070308847,14.223980127948607),
+            zoom: 16,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -90,7 +98,8 @@ export class HomeComponent implements OnInit {
     }
 
     /**
-     * Generates gradient for the map we show
+     * Generates gradient for the map we show,
+     * just in case we want to change it...
      * @returns {string[]}
      */
     getGradient(){
@@ -117,10 +126,10 @@ export class HomeComponent implements OnInit {
             dayNames: ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"],
             dayNamesShort: ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"],
             dayNamesMin: ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"],
-            monthNames: [ "January","February","March","April","May","June","July","August","September","October","November","December" ],
-            monthNamesShort: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
-            today: 'Today',
-            clear: 'Clear'
+            monthNames: [ "Leden","Únor","Březen","Duben","Květen","Červen","Červenec","Srpen","Září","Říjen","Listopad","Prosinec" ],
+            monthNamesShort: [ "Led", "Ún", "Bře", "Du", "Kvě", "Čer","Čce", "Srp", "Zář", "Říj", "Lis", "Pro" ],
+            today: 'Dnes',
+            clear: 'Reset'
         };
     }
 }

@@ -3,8 +3,12 @@ package com.jay.service.impl;
 import com.jay.service.MeasurePointService;
 import com.jay.domain.MeasurePoint;
 import com.jay.repository.MeasurePointRepository;
+import com.jay.service.dto.MeasureDataDTO;
 import com.jay.service.dto.MeasurePointDTO;
 import com.jay.service.mapper.MeasurePointMapper;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -81,5 +85,34 @@ public class MeasurePointServiceImpl implements MeasurePointService{
     public void delete(Long id) {
         log.debug("Request to delete MeasurePoint : {}", id);
         measurePointRepository.delete(id);
+    }
+
+    @Override
+    public List<MeasureDataDTO> findAllMeasureData() {
+
+        List<MeasurePoint> measurePoints = measurePointRepository.findAll();
+        List<MeasureDataDTO> measureData = this.tranformMeasurePointIntoMeasureData(measurePoints);
+
+        return measureData;
+    }
+
+    @Override
+    public List<MeasureDataDTO> findAllMeasureData(LocalDate start, LocalDate end) {
+
+        //Lets find all measure points
+        List<MeasurePoint> measurePoints = measurePointRepository.findAll(start, end);
+        List<MeasureDataDTO> measureData = this.tranformMeasurePointIntoMeasureData(measurePoints);
+        return measureData;
+    }
+
+    private List<MeasureDataDTO> tranformMeasurePointIntoMeasureData(List<MeasurePoint> measurePoints){
+        List<MeasureDataDTO> measureData = new ArrayList<>();
+        //Tranform measurePoints to DTO
+        for (MeasurePoint point: measurePoints) {
+            MeasureDataDTO measureDataDTO = new MeasureDataDTO(point);
+            measureData.add(measureDataDTO);
+        }
+
+        return measureData;
     }
 }

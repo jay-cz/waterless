@@ -2,11 +2,13 @@ package com.jay.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.jay.service.MeasurePointService;
+import com.jay.service.dto.MeasureDataDTO;
 import com.jay.web.rest.util.HeaderUtil;
 import com.jay.web.rest.util.PaginationUtil;
 import com.jay.service.dto.MeasurePointDTO;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
+import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -79,6 +81,36 @@ public class MeasurePointResource {
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, measurePointDTO.getId().toString()))
             .body(result);
+    }
+
+    /**
+     * GET  /measure-points : get all the measurePoints.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of measurePoints in body
+     */
+    @GetMapping("/measure-point-data/getAll")
+    @Timed
+    public ResponseEntity<List<MeasureDataDTO>> getAllMeasurePoints() {
+        log.debug("REST request to get a page of MeasurePoints");
+        List<MeasureDataDTO> measureData = measurePointService.findAllMeasureData();
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/measure-points");
+        return new ResponseEntity<>(measureData, HttpStatus.OK);
+    }
+
+
+
+    /**
+     * GET  /measure-points : get all the measurePoints.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of measurePoints in body
+     */
+    @GetMapping("/measure-point-data")
+    @Timed
+    public ResponseEntity<List<MeasureDataDTO>> getAllMeasurePointsInTimeRange(@RequestParam LocalDate start,@RequestParam LocalDate end ) {
+        log.debug("REST request to get a page of MeasurePoints");
+        List<MeasureDataDTO> measureData = measurePointService.findAllMeasureData(start, end);
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/measure-points");
+        return new ResponseEntity<>(measureData, HttpStatus.OK);
     }
 
     /**
